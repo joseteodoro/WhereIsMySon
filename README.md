@@ -17,7 +17,21 @@ The services are independent, so you can make them up in any order. These are th
 
 ## Running the application
 
-If you have docker on you machine, you can use the command `startServers.sh` to start all the servers and dependencies at once.
+Use the maven to build the applications and run it:
+```
+cd register-service
+mvn clean compile package && java -jar target/register-service-0.0.1-SNAPSHOT.jar
+```
+
+```
+cd localization-service
+mvn clean compile package && java -jar target/localization-service-0.0.1-SNAPSHOT.jar
+```
+
+```
+cd notification-service
+mvn clean compile package && java -jar target/notification-service-0.0.1-SNAPSHOT.jar
+```
 
 ## register-service
 
