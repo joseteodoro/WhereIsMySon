@@ -15,13 +15,17 @@ import br.whereismyson.registerservice.model.Device;
 import br.whereismyson.registerservice.model.vo.DeviceVO;
 import br.whereismyson.registerservice.model.vo.Position;
 import br.whereismyson.registerservice.repository.DeviceDAO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
+@Api(value="/device", description="Manage the devices with emails and usual geo positions")
 public class DeviceController {
 
 	@Autowired
 	private DeviceDAO dao;
 
+	@ApiOperation(value = "Signup a new device", response = Device.class)
 	@PostMapping("/device")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Device post(@RequestBody DeviceVO deviceVO) {
@@ -37,6 +41,7 @@ public class DeviceController {
 		return dao.save(newDevice);
 	}
 
+	@ApiOperation(value = "Updates the email address for a device", response = Device.class)
 	@PostMapping("/device/{deviceId}")
 	public Device post(@PathVariable("deviceId") Long deviceId, @RequestBody DeviceVO deviceVO) {
 		Optional<Device> deviceFound = dao.findById(deviceId);
@@ -50,6 +55,7 @@ public class DeviceController {
 		return dao.save(device);
 	}
 	
+	@ApiOperation(value = "Post a home geo position for a device", response = Device.class)
 	@PostMapping("/device/{deviceId}/home")
 	public Device postHome(@PathVariable("deviceId") Long deviceId, @RequestBody Position position) {
 		Optional<Device> deviceFound = dao.findById(deviceId);
@@ -63,6 +69,7 @@ public class DeviceController {
 		return dao.save(device);
 	}
 	
+	@ApiOperation(value = "Post an usual geo position for a device", response = Device.class)
 	@PostMapping("/device/{deviceId}/usualOutsidePlace")
 	public Device postUsualOutsidePlace(@PathVariable("deviceId") Long deviceId, @RequestBody Position position) {
 		Optional<Device> deviceFound = dao.findById(deviceId);

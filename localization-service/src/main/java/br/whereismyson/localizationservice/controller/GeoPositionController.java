@@ -12,8 +12,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import br.whereismyson.localizationservice.amqp.AMQPSender;
 import br.whereismyson.localizationservice.model.GeoPosition;
 import br.whereismyson.localizationservice.repository.GeoPositionDAO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
+@Api(value="/geoposition", description="Post the geo position for the device")
 public class GeoPositionController {
 
 	@Autowired
@@ -22,6 +25,7 @@ public class GeoPositionController {
 	@Autowired
 	private GeoPositionDAO dao;
 	
+	@ApiOperation(value = "Post a new position for a device in a specific timestamp", response = GeoPosition.class)
 	@PostMapping("/geoposition")
 	@ResponseStatus(HttpStatus.CREATED)
 	public GeoPosition post(@RequestBody GeoPosition position) {
