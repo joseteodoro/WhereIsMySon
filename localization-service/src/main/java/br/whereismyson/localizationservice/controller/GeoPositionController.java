@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import br.whereismyson.localizationservice.amqp.AMQPSender;
 import br.whereismyson.localizationservice.model.GeoPosition;
+import br.whereismyson.localizationservice.repository.GeoPositionDAO;
 
 @RestController
 public class GeoPositionController {
@@ -18,11 +19,15 @@ public class GeoPositionController {
 	@Autowired
 	private AMQPSender amqpSender;
 	
+	@Autowired
+	private GeoPositionDAO dao;
+	
 	@PostMapping("/geoposition")
 	@ResponseStatus(HttpStatus.CREATED)
 	public GeoPosition post(@RequestBody GeoPosition position) {
 		try {
 			amqpSender.send(position);
+			dao.save(position);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Could not place the geolocation");

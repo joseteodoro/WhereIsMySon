@@ -1,14 +1,31 @@
 package br.whereismyson.localizationservice.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class GeoPosition {
-	
+
+	@Id
+	@GeneratedValue
+	private Long id;
+
 	private long timestamp;
-	
+
 	private long longitude;
-	
+
 	private long latitude;
-	
-	private String deviceId;
+
+	private long deviceId;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public long getTimestamp() {
 		return timestamp;
@@ -34,11 +51,11 @@ public class GeoPosition {
 		this.latitude = latitude;
 	}
 
-	public String getDeviceId() {
+	public long getDeviceId() {
 		return deviceId;
 	}
 
-	public void setDeviceId(String deviceId) {
+	public void setDeviceId(long deviceId) {
 		this.deviceId = deviceId;
 	}
 
@@ -47,5 +64,5 @@ public class GeoPosition {
 		return "GeoPosition [timestamp=" + timestamp + ", longitude=" + longitude + ", latitude=" + latitude
 				+ ", deviceId=" + deviceId + "]";
 	}
-	
+
 }
