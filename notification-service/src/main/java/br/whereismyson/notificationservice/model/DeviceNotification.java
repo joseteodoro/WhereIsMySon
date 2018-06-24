@@ -6,4 +6,6 @@ public class DeviceNotification {
 	
 	private String message;
 	
+	
+	
 }
