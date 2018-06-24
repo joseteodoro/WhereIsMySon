@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.whereismyson.registerservice.exception.NotFoundException;
 import br.whereismyson.registerservice.model.Device;
 import br.whereismyson.registerservice.model.vo.DeviceVO;
+import br.whereismyson.registerservice.model.vo.Position;
 import br.whereismyson.registerservice.repository.DeviceDAO;
 
 @RestController
@@ -46,6 +47,32 @@ public class DeviceController {
 		Device device = deviceFound.get();
 		device.setAccountableEmailAdress(deviceVO.getAccountableEmail());
 		device.setLabel(deviceVO.getLabel());
+		return dao.save(device);
+	}
+	
+	@PostMapping("/device/{deviceId}/home")
+	public Device postHome(@PathVariable("deviceId") Long deviceId, @RequestBody Position position) {
+		Optional<Device> deviceFound = dao.findById(deviceId);
+		if (!deviceFound.isPresent()) {
+			throw new NotFoundException("Device", String.format("id: [%s]", deviceId));
+		}
+
+		Device device = deviceFound.get();
+		device.setHomeLatitude(position.getLatitude());
+		device.setHomeLongitude(position.getLongitude());
+		return dao.save(device);
+	}
+	
+	@PostMapping("/device/{deviceId}/usualOutsidePlace")
+	public Device postUsualOutsidePlace(@PathVariable("deviceId") Long deviceId, @RequestBody Position position) {
+		Optional<Device> deviceFound = dao.findById(deviceId);
+		if (!deviceFound.isPresent()) {
+			throw new NotFoundException("Device", String.format("id: [%s]", deviceId));
+		}
+
+		Device device = deviceFound.get();
+		device.setUsuallyOutsideLatitude(position.getLatitude());
+		device.setUsuallyOutsideLongitude(position.getLongitude());
 		return dao.save(device);
 	}
 

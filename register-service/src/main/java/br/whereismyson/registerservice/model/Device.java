@@ -1,10 +1,8 @@
 package br.whereismyson.registerservice.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Device {
@@ -16,6 +14,14 @@ public class Device {
 	private String label;
 	
 	private String accountableEmailAdress;
+	
+	private Long homeLatitude;
+	
+	private Long homeLongitude;
+	
+	private Long usuallyOutsideLatitude;
+	
+	private Long usuallyOutsideLongitude;
 
 	public Long getId() {
 		return id;
@@ -41,4 +47,36 @@ public class Device {
 		this.accountableEmailAdress = accountableEmailAdress;
 	}
 
+	public long getHomeLatitude() {
+		return homeLatitude;
+	}
+
+	public void setHomeLatitude(long homeLatitude) {
+		this.homeLatitude = homeLatitude;
+	}
+
+	public long getHomeLongitude() {
+		return homeLongitude;
+	}
+
+	public void setHomeLongitude(long homeLongitude) {
+		this.homeLongitude = homeLongitude;
+	}
+
+	public long getUsuallyOutsideLatitude() {
+		return usuallyOutsideLatitude;
+	}
+
+	public void setUsuallyOutsideLatitude(long usuallyOutsideLatitude) {
+		this.usuallyOutsideLatitude = usuallyOutsideLatitude;
+	}
+
+	public long getUsuallyOutsideLongitude() {
+		return usuallyOutsideLongitude;
+	}
+
+	public void setUsuallyOutsideLongitude(long usuallyOutsideLongitude) {
+		this.usuallyOutsideLongitude = usuallyOutsideLongitude;
+	}
+	
 }
