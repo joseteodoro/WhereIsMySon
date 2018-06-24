@@ -1,4 +1,4 @@
-package br.whereismyson.notificationservice.model.vo;
+package br.whereismyson.registerservice.model.vo;
 
 public class DeviceVO {
 	

@@ -1,4 +1,4 @@
-package br.whereismyson.notificationservice.model;
+package br.whereismyson.registerservice.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,8 +15,7 @@ public class Device {
 	
 	private String label;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Accountable accountable;
+	private String accountableEmailAdress;
 
 	public Long getId() {
 		return id;
@@ -34,14 +33,12 @@ public class Device {
 		this.label = label;
 	}
 
-	public Accountable getAccountable() {
-		return accountable;
+	public String getAccountableEmailAdress() {
+		return accountableEmailAdress;
 	}
 
-	public void setAccountable(Accountable accountable) {
-		this.accountable = accountable;
+	public void setAccountableEmailAdress(String accountableEmailAdress) {
+		this.accountableEmailAdress = accountableEmailAdress;
 	}
-	
-	
 
 }
