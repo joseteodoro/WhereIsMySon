@@ -7,6 +7,7 @@ On the mobile device side, we can have an application to push the geolocation ti
 ## Requirements
 
 - You have to have jdk8+ on your machine;
+- You have to have maven configured on your path;
 - You have to have a RabbitMQ running on `localhost:5672` and mysql running on `localhost:3306` with the schema `whereismyson` already created. You can use the scripts `startRabbit.sh` and `exposeMySql.sh` to start them, but you need the docker running in our machine.
 
 The services are independent, so you can make them up in any order. These are the ports after run:
